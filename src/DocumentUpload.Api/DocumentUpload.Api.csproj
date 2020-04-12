@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>$(NetCoreAppVersion)</TargetFramework>
+		<OutputType>Exe</OutputType>
+		<DocumentationFile>DocumentUpload.Api.xml</DocumentationFile>
+		<Title>Document Upload Service API</Title>
+	</PropertyGroup>
+
+
+	<ItemGroup Label="PackageReferences">
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.2" />
+	</ItemGroup>
+
+	<ItemGroup Label="Swagger/Swashbuckle">
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="4.1.1" />
+	</ItemGroup>
+
+	<ItemGroup Label="SeriLog">
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="3.0.0" />
+		<PackageReference Include="Serilog.Exceptions" Version="5.4.0" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+		<PackageReference Include="Serilog.Sinks.Debug" Version="1.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\DocumentUpload.Api.Contracts\DocumentUpload.Api.Contracts.csproj" />
+		<ProjectReference Include="..\DocumentUpload.Core\DocumentUpload.Core.csproj" />
+		<ProjectReference Include="..\DocumentUpload.Services\DocumentUpload.Services.csproj" />
+	</ItemGroup>
+
+
+</Project>

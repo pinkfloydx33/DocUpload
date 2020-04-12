@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DocumentUpload.Api</name>
+    </assembly>
+    <members>
+        <member name="M:DocumentUpload.Api.Swagger.EnumTypeSchemaFilter.#ctor(System.Boolean)">
+            <param name="useInts">if set to <c>true</c> enums are described as integers instead of strings in the swagger website and schema.</param>
+        </member>
+    </members>
+</doc>
