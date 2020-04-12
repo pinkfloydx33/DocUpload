@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.favdoc
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -126,6 +127,9 @@ $tf/
 _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
+
+# JustCode is a .NET coding add-in
+.JustCode
 
 # TeamCity is a build add-in
 _TeamCity*
@@ -298,6 +302,10 @@ paket-files/
 
 # FAKE - F# Make
 .fake/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
 
 # CodeRush personal settings
 .cr/personal
