@@ -75,7 +75,7 @@ namespace DocumentUpload.Api.Controllers
 		[HttpGet]
 		[Route("{id:long}")]
 		[SwaggerResponse(StatusCodes.Status200OK, "Returns the details for a single document", typeof(DocumentDetails))]
-		[SwaggerResponse(StatusCodes.Status404NotFound, "Document with the corresponding id was not found")]
+		[SwaggerResponse(StatusCodes.Status404NotFound, "A document with the specified ID was not found")]
 		public async Task<ActionResult<DocumentDetails>> Get(long id)
 		{
 			_logger.LogInformation("Begin Get Document {Id}", id);
@@ -104,7 +104,7 @@ namespace DocumentUpload.Api.Controllers
 
 		[HttpGet]
 		[Route("{id:long}/download")]
-		[SwaggerResponse(StatusCodes.Status404NotFound, "Document with the corresponding id was not found or has been deleted")]
+		[SwaggerResponse(StatusCodes.Status404NotFound, "A document with the specified ID was not found or has been deleted")]
 		[SwaggerResponse(StatusCodes.Status200OK, "File was found and is attached to response", typeof(FileResult))]
 		public async Task<ActionResult> Download(long id)
 		{
@@ -143,7 +143,7 @@ namespace DocumentUpload.Api.Controllers
 
 		[HttpDelete]
 		[Route("{id:long}")]
-		[SwaggerResponse(StatusCodes.Status404NotFound, "The Request document was not found")]
+		[SwaggerResponse(StatusCodes.Status404NotFound, "The Requested document was not found")]
 		[SwaggerResponse(StatusCodes.Status204NoContent, "The DELETE was successful")]
 		public async Task<ActionResult> Delete(long id)
 		{
