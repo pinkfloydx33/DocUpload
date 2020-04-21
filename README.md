@@ -1,6 +1,8 @@
 # Document Upload Service
 
-This is a basic document upload service. It allows Uploading, Listing (primitive search), Download and Deletion of documents. The following endpoints are defined by the API:
+This is a *basic* document upload service. The project and this README were written as part of a job interview (which unfortunately didn't pan out).
+
+The service allows uploading, listing (primitive search), download and deletion of documents. The following endpoints are defined by the API:
 
 | Endpoint                       | Verb     | Description                                                     |
 | -------------------------------| :------: | --------------------------------------------------------------- |
@@ -10,7 +12,6 @@ This is a basic document upload service. It allows Uploading, Listing (primitive
 | `api/v1/documents`             | `DELETE` | Delete a document by it's identifier                            |
 | `api/v1/documents`             | `POST`   | Upload a new document into the system                           |
 | `swagger`					     | N/A      | Swagger endpoint for testing                                    |
-
 
 
 ## Architecture and Features
