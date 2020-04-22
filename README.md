@@ -1,6 +1,8 @@
 # Document Upload Service
 
-This is a *basic* document upload service. The service allows uploading, listing (primitive search), download and deletion of documents. The following endpoints are defined by the API:
+This is a *basic* document upload service. It was written as part of a job interview that unfortunately did not pan out.
+
+The service allows uploading, listing (primitive search), download and deletion of documents. The following endpoints are defined by the API:
 
 | Endpoint                       | Verb     | Description                                                     |
 | -------------------------------| :------: | --------------------------------------------------------------- |
