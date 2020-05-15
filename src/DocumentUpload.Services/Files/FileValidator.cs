@@ -28,30 +28,30 @@ namespace DocumentUpload.Services.Files
 
 			if (content is null || content.Length == 0)
 			{
-                errorMessage = "File has no content";
+				errorMessage = "File has no content";
 				return false;
 			}
 
 			if (string.IsNullOrWhiteSpace(fileName))
 			{
-                errorMessage = "File name is required";
+				errorMessage = "File name is required";
 				return false;
 			}
 
 			if (content.Length > MaxSize)
 			{
-                errorMessage = $"File is larger than {MaxSize} bytes";
+				errorMessage = $"File is larger than {MaxSize} bytes";
 				return false;
 			}
 
 			var extension = Path.GetExtension(fileName.AsSpan()).TrimStart('.').ToString();
 			if (!SupportedExtensions.Contains(extension))
 			{
-                errorMessage = $"File extension '{extension}' is not supported";
+				errorMessage = $"File extension '{extension}' is not supported";
 				return false;
 			}
 
-            errorMessage = default;
+			errorMessage = default;
 			return true;
 
 		}

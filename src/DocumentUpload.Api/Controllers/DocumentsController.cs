@@ -26,16 +26,16 @@ namespace DocumentUpload.Api.Controllers
 		private readonly IFileValidator _validator;
 		private readonly IFileTypeInfoProvider _fileInfoProvider;
 
-        public DocumentsController(
-            IDocumentRepository repository, IFileValidator validator, IFileTypeInfoProvider provider, ILogger<DocumentsController> logger)
-        {
-            _logger = logger;
-            _repository = repository;
-            _validator = validator;
-            _fileInfoProvider = provider;
-        }
+		public DocumentsController(
+			IDocumentRepository repository, IFileValidator validator, IFileTypeInfoProvider provider, ILogger<DocumentsController> logger)
+		{
+			_logger = logger;
+			_repository = repository;
+			_validator = validator;
+			_fileInfoProvider = provider;
+		}
 
-        [HttpGet]
+		[HttpGet]
 		[SwaggerResponse(StatusCodes.Status200OK, "Returns a paginated list of all Documents", typeof(IEnumerable<DocumentDetails>))]
 		[ProducesResponseHeader("X-Pagination-Count", StatusCodes.Status200OK, Type = ResponseHeaderType.Numeric)]
 		[ProducesResponseHeader("Links", StatusCodes.Status200OK)]
@@ -179,23 +179,23 @@ namespace DocumentUpload.Api.Controllers
 		{
 			_logger.LogInformation("Begin Upload of File {Name}", file.FileName);
 
-            var fileContent = await file.GetFileBytesAsync(HttpContext.RequestAborted);
+			var fileContent = await file.GetFileBytesAsync(HttpContext.RequestAborted);
 
 			if (!_validator.IsValid(file.FileName, fileContent, out var message))
 			{
 				_logger.LogError("Posted File {Name} is not Valid: {Error}", file.FileName, message);
-                return BadRequest(message);
-            }
+				return BadRequest(message);
+			}
 
-            var details = new DocumentDetailsDto
-            {
-                Description = doc.Description,
-                FileName = file.FileName,
-                Owner = doc.Owner,
-                Title = doc.Title,
-                FileSize = file.Length,
-                DocumentType = _fileInfoProvider.GetDocumentType(file.FileName)
-            };
+			var details = new DocumentDetailsDto
+			{
+				Description = doc.Description,
+				FileName = file.FileName,
+				Owner = doc.Owner,
+				Title = doc.Title,
+				FileSize = file.Length,
+				DocumentType = _fileInfoProvider.GetDocumentType(file.FileName)
+			};
 
 			try
 			{

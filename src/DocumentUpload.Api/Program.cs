@@ -44,14 +44,14 @@ namespace DocumentUpload.Api
 			
 		}
 
-        private static IHostBuilder CreateHostBuilder(string[] args) =>
-                Host.CreateDefaultBuilder(args)
-                    .ConfigureWebHostDefaults(webBuilder =>
-                     {
-                         webBuilder.UseStartup<Startup>();
-                     })
-                    .UseSerilog(ConfigureSerilog)
-                    .UseConsoleLifetime();
+		private static IHostBuilder CreateHostBuilder(string[] args) =>
+				Host.CreateDefaultBuilder(args)
+					.ConfigureWebHostDefaults(webBuilder =>
+					{
+						webBuilder.UseStartup<Startup>();
+					})
+					.UseSerilog(ConfigureSerilog)
+					.UseConsoleLifetime();
 
 		private static void ConfigureSerilog(HostBuilderContext hostContext, LoggerConfiguration logBuilder)
 		{

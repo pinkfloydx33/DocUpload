@@ -6,6 +6,6 @@ namespace DocumentUpload.Core.Data
 	{
 		public long Total { get; set; }
 		public List<DocumentDetailsDto> Documents { get; set; }
-        public long Returned => Documents?.Count ?? 0;
-    }
+		public long Returned => Documents?.Count ?? 0;
+	}
 }

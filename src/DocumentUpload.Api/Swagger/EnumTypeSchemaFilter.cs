@@ -24,58 +24,58 @@ namespace DocumentUpload.Api.Swagger
 		public void Apply(OpenApiSchema schema, SchemaFilterContext context)
 		{
 			var type = Nullable.GetUnderlyingType(context.Type) ?? context.Type;
-            if (!type.IsEnum) 
-                return;
+			if (!type.IsEnum) 
+				return;
 
-            schema.Format = SwaggerConstants.FormatInt32;
-            schema.Type = SwaggerConstants.TypeString;
+			schema.Format = SwaggerConstants.FormatInt32;
+			schema.Type = SwaggerConstants.TypeString;
 
-            var schemaValues = new List<IOpenApiAny>();
+			var schemaValues = new List<IOpenApiAny>();
 
-            var values = Enum.GetValues(type).Cast<object>().Select(Convert.ToInt32).ToList();
-            var names = Enum.GetNames(type);
+			var values = Enum.GetValues(type).Cast<object>().Select(Convert.ToInt32).ToList();
+			var names = Enum.GetNames(type);
 
-            if (_useInts)
-            {
-                foreach (var e in values)
-                    schemaValues.Add(new OpenApiInteger(e));
-            }
-            else
-            {
-                // ReSharper disable once LoopCanBeConvertedToQuery
-                foreach (var e in names)
-                    schemaValues.Add(new OpenApiString(e));
-            }
+			if (_useInts)
+			{
+				foreach (var e in values)
+					schemaValues.Add(new OpenApiInteger(e));
+			}
+			else
+			{
+				// ReSharper disable once LoopCanBeConvertedToQuery
+				foreach (var e in names)
+					schemaValues.Add(new OpenApiString(e));
+			}
 
-            schema.Enum = schemaValues;
+			schema.Enum = schemaValues;
 
 
-            var valueArray = new OpenApiArray();
+			var valueArray = new OpenApiArray();
 
-            for (var i = 0; i < names.Length; ++i)
-            {
-                var val = values[i];
+			for (var i = 0; i < names.Length; ++i)
+			{
+				var val = values[i];
 
-                var o = new OpenApiObject
-                {
-                    [SwaggerConstants.ValueProperty] = _useInts
-                            ? (IOpenApiAny) new OpenApiInteger(Convert.ToInt32(val))
-                            : new OpenApiString(names[i]),
+				var o = new OpenApiObject
+				{
+					[SwaggerConstants.ValueProperty] = _useInts
+							? (IOpenApiAny) new OpenApiInteger(Convert.ToInt32(val))
+							: new OpenApiString(names[i]),
 
-                    [SwaggerConstants.NameProperty] = new OpenApiString(names[i])
-                };
+					[SwaggerConstants.NameProperty] = new OpenApiString(names[i])
+				};
 
-                valueArray.Add(o);
+				valueArray.Add(o);
 
-            }
+			}
 
-            schema.AddExtension(ExtensionEnums, new OpenApiObject
-            {
-                [SwaggerConstants.NameProperty] = new OpenApiString(type.Name),
-                [ExtensionAsStringProperty] = new OpenApiBoolean(false),
-                [ExtensionValuesProperty] = valueArray
-            });
+			schema.AddExtension(ExtensionEnums, new OpenApiObject
+			{
+				[SwaggerConstants.NameProperty] = new OpenApiString(type.Name),
+				[ExtensionAsStringProperty] = new OpenApiBoolean(false),
+				[ExtensionValuesProperty] = valueArray
+			});
 
-        }
+		}
 	}
 }

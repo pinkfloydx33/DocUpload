@@ -32,19 +32,19 @@ namespace DocumentUpload.Api.Utilities
 
 		}
 
-        public static Task<byte[]> GetFileBytesAsync(this IFormFile file, CancellationToken token = default)
-        {
+		public static Task<byte[]> GetFileBytesAsync(this IFormFile file, CancellationToken token = default)
+		{
 			if (file is null)
 				throw new ArgumentNullException(nameof(file));
 
-            return Impl(file, token);
+			return Impl(file, token);
 
-            static async Task<byte[]> Impl(IFormFile formFile, CancellationToken ct)
-            {
-                await using var ms = new MemoryStream((int) formFile.Length);
-                await formFile.CopyToAsync(ms, ct);
-                return ms.ToArray();
-            }
-        }
+			static async Task<byte[]> Impl(IFormFile formFile, CancellationToken ct)
+			{
+				await using var ms = new MemoryStream((int) formFile.Length);
+				await formFile.CopyToAsync(ms, ct);
+				return ms.ToArray();
+			}
+		}
 	}
 }

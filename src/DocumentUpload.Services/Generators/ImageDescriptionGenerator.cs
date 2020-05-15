@@ -10,19 +10,19 @@ namespace DocumentUpload.Services.Generators
 	{
 		public override DocumentType Type => DocumentType.Image;
 
-        protected override unsafe ValueTask<string> GenerateDescription(ReadOnlyMemory<byte> fileContent)
-        {
+		protected override unsafe ValueTask<string> GenerateDescription(ReadOnlyMemory<byte> fileContent)
+		{
 
-            fixed (byte* pBuffer = &fileContent.Span[0])
-            {
-                using var ms = new UnmanagedMemoryStream(pBuffer, fileContent.Length);
-                using var img = Image.FromStream(ms);
+			fixed (byte* pBuffer = &fileContent.Span[0])
+			{
+				using var ms = new UnmanagedMemoryStream(pBuffer, fileContent.Length);
+				using var img = Image.FromStream(ms);
 
-                var result = $"A {img.Height}x{img.Width} {img.RawFormat} image";
+				var result = $"A {img.Height}x{img.Width} {img.RawFormat} image";
 
-                return new ValueTask<string>(result);
-            }
+				return new ValueTask<string>(result);
+			}
 
-        }
-    }
+		}
+	}
 }

@@ -29,29 +29,29 @@ namespace DocumentUpload.Api
 
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllers()
-                     // required for Swagger
-                    .AddNewtonsoftJson(opts =>
-                     {
-                         opts.SerializerSettings.Converters.Add(new StringEnumConverter(new CamelCaseNamingStrategy()));
-                     });
+		{
+			services.AddControllers()
+					// required for Swagger
+					.AddNewtonsoftJson(opts =>
+					{
+						opts.SerializerSettings.Converters.Add(new StringEnumConverter(new CamelCaseNamingStrategy()));
+					});
 
 
 			// add swagger capabilities
-            services.AddApiVersioning(opts =>
-                     {
-                         opts.DefaultApiVersion = ApiVersion.Default;
-                         opts.AssumeDefaultVersionWhenUnspecified = true;
-                         opts.ReportApiVersions = true;
-                     })
-                    .AddVersionedApiExplorer(opts =>
-                     {
-                         opts.GroupNameFormat = "'v'VVV";
-                         opts.SubstituteApiVersionInUrl = true;
-                     })
-                    .AddSwaggerGen()
-                    .ConfigureOptions<ConfigureSwaggerOptions>();
+			services.AddApiVersioning(opts =>
+					{
+						opts.DefaultApiVersion = ApiVersion.Default;
+						opts.AssumeDefaultVersionWhenUnspecified = true;
+						opts.ReportApiVersions = true;
+					})
+					.AddVersionedApiExplorer(opts =>
+					{
+						opts.GroupNameFormat = "'v'VVV";
+						opts.SubstituteApiVersionInUrl = true;
+					})
+					.AddSwaggerGen()
+					.ConfigureOptions<ConfigureSwaggerOptions>();
 
 			// configure our document services
 			services.Configure<DataContextOptions>(s =>

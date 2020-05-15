@@ -7,28 +7,28 @@ namespace DocumentUpload.Api.Utilities
 	internal sealed class PaginatedLinkBuilder
 	{
 		public PaginatedLinkBuilder(IUrlHelper urlHelper, string actionName, object routeValues, long pageNo, long pageSize, long recordCount)
-        {
-            if (urlHelper is null)
+		{
+			if (urlHelper is null)
 				throw new ArgumentNullException(nameof(urlHelper));
 
-            if (string.IsNullOrWhiteSpace(actionName))
-                throw new ArgumentNullException(nameof(actionName));
-            
-            if (pageNo <= 0)
-                throw new ArgumentOutOfRangeException(nameof(pageNo));
+			if (string.IsNullOrWhiteSpace(actionName))
+				throw new ArgumentNullException(nameof(actionName));
 
-            if (pageSize <= 0)
-                throw new ArgumentOutOfRangeException(nameof(pageSize));
+			if (pageNo <= 0)
+				throw new ArgumentOutOfRangeException(nameof(pageNo));
+
+			if (pageSize <= 0)
+				throw new ArgumentOutOfRangeException(nameof(pageSize));
 			
 			if (recordCount < 0)
 				throw new ArgumentOutOfRangeException(nameof(recordCount));
 
-            const string keyPageNumber = "pageNumber";
+			const string keyPageNumber = "pageNumber";
 			const string keyPageSize = "pageSize";
 
-            var pageCount = recordCount == 0 ? 1 : (long) Math.Ceiling(recordCount / (double) pageSize);
+			var pageCount = recordCount == 0 ? 1 : (long) Math.Ceiling(recordCount / (double) pageSize);
 
-            var dict = new RouteValueDictionary(routeValues)
+			var dict = new RouteValueDictionary(routeValues)
 			{
 				[keyPageSize] = pageSize
 			};
@@ -36,7 +36,7 @@ namespace DocumentUpload.Api.Utilities
 			Uri Create(long thisPage)
 			{
 				dict[keyPageNumber] = thisPage;
-                var link = urlHelper.ActionLink(actionName, values: dict);
+				var link = urlHelper.ActionLink(actionName, values: dict);
 				return new Uri(link);
 			}
 

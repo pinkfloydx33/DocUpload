@@ -10,11 +10,11 @@ namespace DocumentUpload.Services.Generators
 
 		public override DocumentType Type => DocumentType.PDF;
 
-        protected override ValueTask<string> GenerateDescription(ReadOnlyMemory<byte> fileContent)
-        {
-            var sizeInKb = fileContent.Length / BytesPerKb;
-            var result = $"This is a PDF File ({sizeInKb:N}kb)";
-            return new ValueTask<string>(result);
-        }
-    }
+		protected override ValueTask<string> GenerateDescription(ReadOnlyMemory<byte> fileContent)
+		{
+			var sizeInKb = fileContent.Length / BytesPerKb;
+			var result = $"This is a PDF File ({sizeInKb:N}kb)";
+			return new ValueTask<string>(result);
+		}
+	}
 }

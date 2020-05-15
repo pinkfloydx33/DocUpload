@@ -15,17 +15,17 @@ namespace DocumentUpload.Services.Data
 	public class DocumentRepository : IDocumentRepository
 	{
 		private const int SqlErrorCodeUniqueViolation = 2627;
-        
-        private readonly DataContextOptions _options;
-        private readonly IDescriptionGeneratorFactory _descriptionFactory;
+		
+		private readonly DataContextOptions _options;
+		private readonly IDescriptionGeneratorFactory _descriptionFactory;
 
-        public DocumentRepository(IOptions<DataContextOptions> options, IDescriptionGeneratorFactory descriptionFactory)
-        {
-            _options = options?.Value ?? throw new ArgumentNullException(nameof(options));
-            _descriptionFactory = descriptionFactory;
-        }
+		public DocumentRepository(IOptions<DataContextOptions> options, IDescriptionGeneratorFactory descriptionFactory)
+		{
+			_options = options?.Value ?? throw new ArgumentNullException(nameof(options));
+			_descriptionFactory = descriptionFactory;
+		}
 
-        public async Task<DocumentDetailList> ListDocumentsAsync(DocumentSearchParameters search, CancellationToken token)
+		public async Task<DocumentDetailList> ListDocumentsAsync(DocumentSearchParameters search, CancellationToken token)
 		{
 
 			var parameters = new DynamicParameters();
@@ -117,8 +117,8 @@ WHERE DocumentId = @id;
 
 				await new SyncContextRemover();
 
-                if (string.IsNullOrWhiteSpace(details.Description))
-                    details.Description = await GetFileDescription(details.DocumentType, dataBytes);
+				if (string.IsNullOrWhiteSpace(details.Description))
+					details.Description = await GetFileDescription(details.DocumentType, dataBytes);
 
 				using var scope = new TransactionScope(TransactionScopeOption.RequiresNew, TransactionScopeAsyncFlowOption.Enabled);
 
@@ -163,11 +163,11 @@ VALUES (@Id, @Content)
 			}
 		}
 
-        internal async ValueTask<string> GetFileDescription(DocumentType docType, byte[] dataBytes)
-        {
-            var generator = _descriptionFactory.GetGenerator(docType);
-            return await generator.GetDescriptionAsync(dataBytes);
-        }
+		internal async ValueTask<string> GetFileDescription(DocumentType docType, byte[] dataBytes)
+		{
+			var generator = _descriptionFactory.GetGenerator(docType);
+			return await generator.GetDescriptionAsync(dataBytes);
+		}
 		
 		// internal for testing
 		internal static (string where, string pagination) ExtractSearchClauses(DocumentSearchParameters search, DynamicParameters parameters)

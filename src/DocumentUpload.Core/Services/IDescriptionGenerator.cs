@@ -8,7 +8,7 @@ namespace DocumentUpload.Core.Services
 	/// </summary>
 	public interface IDescriptionGenerator
 	{
-        ValueTask<string> GetDescriptionAsync(ReadOnlyMemory<byte> fileContent);
+		ValueTask<string> GetDescriptionAsync(ReadOnlyMemory<byte> fileContent);
 		DocumentType Type { get; }
 	}
 }

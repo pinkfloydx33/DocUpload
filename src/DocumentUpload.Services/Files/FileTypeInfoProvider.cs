@@ -19,7 +19,7 @@ namespace DocumentUpload.Services.Files
 
 		private readonly TryGetMimeDelegate _mimeFactory;
 
-        public FileTypeInfoProvider(TryGetMimeDelegate mimeFactory)
+		public FileTypeInfoProvider(TryGetMimeDelegate mimeFactory)
 		{
 			_mimeFactory = mimeFactory ?? throw new ArgumentNullException(nameof(mimeFactory));
 		}
